@@ -6,7 +6,7 @@ $font-whitney: Whitney, '-apple-system', BlinkMacSystemFont, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('fonts/WhitneyBookRegular.woff') format('woff');
+  src: url('/fonts/WhitneyBookRegular.woff') format('woff');
 }
 
 @font-face {
@@ -14,5 +14,5 @@ $font-whitney: Whitney, '-apple-system', BlinkMacSystemFont, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('fonts/WhitneyBoldRegular.woff') format('woff');
+  src: url('/fonts/WhitneyBoldRegular.woff') format('woff');
 }
