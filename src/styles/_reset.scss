@@ -1,0 +1,47 @@
+
+// 1. NOTE: Webkit iOS: enable momentum scrolling on overflow elements
+// 2. NOTE: Prevent tap delay on touch devices
+// 3. NOTE: Prevent mobile devices from scaling font size
+// 4. HACK: Safari: `position: fixed` sets `font-smoothing` to `antialiased`
+
+* {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  -webkit-overflow-scrolling: touch; // 1
+}
+
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
+html {
+  touch-action: manipulation; // 2
+  -webkit-text-size-adjust: none; // 3
+}
+
+body {
+  color: $light;
+  font: 400 1em/1 $font-whitney;
+  background: $dark;
+  -webkit-font-smoothing: subpixel-antialiased; // 4
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $background;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background-color: $dark;
+}

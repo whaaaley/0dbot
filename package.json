@@ -1,0 +1,28 @@
+{
+  "name": "0dbot",
+  "version": "1.0.0",
+  "description": "",
+  "author": "whaley",
+  "main": "index.js",
+  "scripts": {
+    "start": "make start"
+  },
+  "dependencies": {
+    "superfine": "^8.0.10"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^4.3.0",
+    "esbuild": "^0.8.21",
+    "node-sass": "^5.0.0",
+    "typescript": "^4.1.2"
+  },
+  "optionalDependencies": {
+    "eslint": "^7.15.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.1.0",
+    "sass-lint": "^1.13.1"
+  }
+}

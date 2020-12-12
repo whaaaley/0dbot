@@ -1,0 +1,97 @@
+
+.app-warn {
+  margin: 0 0 16px;
+  padding: 12px 18px;
+  border: solid 2px yellow;
+  border-radius: 8px;
+  color: yellow;
+  background: rgba(yellow, 0.5);
+}
+
+//
+
+$yellow: rgb(255, 191, 0);
+$green: rgb(0, 223, 0);
+
+.home-list {
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  margin: 16px 0;
+  overflow: auto;
+  scroll-behavior: smooth;
+
+  div {
+    padding: 12px 18px 12px 48px;
+    background: url(ic-access-time-24px($light)) left 12px top 8px no-repeat;
+
+    // &.-pending {
+    //   padding: 12px 18px 12px 96px;
+    //   background: url(ic-access-time-24px($light)) left 12px top 8px no-repeat;
+    // }
+
+    // &.-success {
+    //   background: url(ic-check-24px($green)) left 12px top 8px no-repeat;
+    // }
+
+    &.-em {
+      margin: auto;
+      font-style: italic;
+    }
+  }
+}
+
+.home-inputs {
+  display: flex;
+
+  input {
+    flex: 1;
+
+    + input {
+      margin: 0 0 0 16px;
+    }
+  }
+}
+
+.home-box {
+  display: flex;
+  flex-flow: column;
+
+  width: 640px;
+  height: 480px;
+  margin: auto;
+  padding: 24px 16px;
+  border-radius: 8px;
+  background: $background;
+
+  input {
+    padding: 12px 18px;
+    border-radius: 8px;
+    outline: none;
+    font: 400 16px/20px $font-whitney;
+    background: $input;
+  }
+}
+
+.home {
+  display: flex;
+  height: 100vh;
+}
+
+.home-message {
+  div {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 96px + 12px;
+    height: 44px;
+    padding: 14px 0 0 48px;
+    background: url(ic-access-time-24px($light)) left 12px top 10px no-repeat;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px 18px 12px 96px + 12px;
+  }
+}
