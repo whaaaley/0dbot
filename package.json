@@ -1,13 +1,14 @@
 {
-  "name": "0dbot",
+  "name": "discord-message-queue",
   "version": "1.0.0",
   "description": "",
-  "author": "whaley",
+  "author": "Dustin Dowell",
   "main": "index.js",
   "scripts": {
     "start": "make start"
   },
   "dependencies": {
+    "@whaaaley/material-icons-scss": "^2.0.2",
     "superfine": "^8.0.10"
   },
   "devDependencies": {
