@@ -27,7 +27,7 @@ prepare:
 	@echo ""
 
 css:
-	node-sass src/main.scss --quiet --source-map-contents --source-map true --output public
+	node-sass src/main.scss --quiet --source-map-contents --include-path node_modules --source-map true --output public
 
 js:
 	tsc src/app.js --allowJs --lib DOM,ES2015 --target ES5 --outDir tmp
