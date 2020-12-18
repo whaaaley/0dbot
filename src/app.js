@@ -59,7 +59,14 @@ window.addEventListener('render', () => {
   })
 })
 
+//
+//
+// Anything that needs to be done when the app starts
+//
+//
+
 // Interval
-window.setInterval(() => {
-  dispatch(discord.actions.timer)
-}, 1000)
+window.setInterval(() => { dispatch(discord.actions.timer) }, 1000)
+
+// Self explanatory
+dispatch(discord.actions.restoreLocalStorage)

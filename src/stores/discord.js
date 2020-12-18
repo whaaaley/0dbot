@@ -1,5 +1,7 @@
 
 const sendMessage = data => {
+  console.log(data)
+
   return fetch(`https://discord.com/api/v8/channels/${data.channelID}/messages`, {
     headers: {
       'accept': '*/*',
@@ -67,7 +69,7 @@ const timer = async ({ discord }) => {
   if (discord.queue.length > 0 && discord.timer % 60 === 0) {
     await sendMessage({
       channelID: discord.channelID,
-      content: discord.queue[0].data,
+      content: discord.queue[0],
       token: discord.token
     })
 
@@ -121,6 +123,18 @@ const updateToken = ({ discord }) => data => {
 
 //
 
+const restoreLocalStorage = ({ discord }) => {
+  discord.saveChannelID = !discord.saveChannelID
+  discord.saveToken = !discord.saveToken
+
+  discord.channelID = localStorage.getItem('channelID', discord.token)
+  discord.token = localStorage.getItem('token', discord.token)
+
+  return { discord }
+}
+
+//
+
 export default {
   state: {
     queue: [],
@@ -139,6 +153,8 @@ export default {
     updateChannelID,
 
     saveToken,
-    updateToken
+    updateToken,
+
+    restoreLocalStorage
   }
 }

@@ -60,6 +60,7 @@ const Home = (localState, localDispatch) => {
           type: 'password',
           autocomplete: 'off',
           placeholder: 'Discord Token',
+          value: state.discord.token,
           onchange: e => {
             dispatch(discord.actions.updateToken, e.target.value)
           }
@@ -72,6 +73,7 @@ const Home = (localState, localDispatch) => {
         }),
         input({
           placeholder: 'Channel ID',
+          value: state.discord.channelID,
           onchange: e => {
             dispatch(discord.actions.updateChannelID, e.target.value)
           }
