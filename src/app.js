@@ -3,7 +3,7 @@ import './automaticReload'
 
 import { patch } from 'superfine'
 import { dispatch, getState } from './pocket'
-import { gtagConfig } from './gtag'
+// import { gtagConfig } from './gtag'
 
 // Stores
 import discord from './stores/discord'
@@ -39,7 +39,7 @@ const routeHandler = () => {
     routeObject.init()
   })
 
-  gtagConfig()
+  // gtagConfig()
 }
 
 // Initalize routing
