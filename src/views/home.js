@@ -87,11 +87,10 @@ const Home = (localState, localDispatch) => {
       ]),
       div({ class: 'content' }, [
         List(state.discord.queue),
-        div({ class: 'home-message' }, [
+        div({ class: 'x' }, [
           input({
             type: 'text',
             placeholder: 'Message #general',
-            class: '-message',
             onkeypress: e => {
               if (e.key === 'Enter') {
                 dispatch(discord.actions.add, e)
