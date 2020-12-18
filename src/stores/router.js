@@ -3,7 +3,7 @@
 // { source: /^\/dp\/[0-9a-f]{24}$/i, destination: '/detail' }
 
 const rewrites = [
-  { source: /^\/user\/\w+$/i, destination: '/user' }
+  // { source: /^\/user\/\w+$/i, destination: '/user' }
 ]
 
 const pushstateEvent = new CustomEvent('pushstate')
