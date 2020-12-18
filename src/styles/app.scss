@@ -30,7 +30,8 @@
 
 .message {
   display: flex;
-  padding: 12px 18px 12px 48px;
+  padding: 12px 12px 12px 48px;
+  border-radius: 8px;
   background: url(ic-access-time-24px($light)) left 12px top 8px no-repeat;
 
   &:hover {
@@ -49,22 +50,22 @@
   flex: 1;
   display: flex;
   flex-flow: column;
-  height: 296px; // reasons
-  margin: 16px 0;
+  padding: 0 0 16px;
   overflow: auto;
   scroll-behavior: smooth;
 }
 
 .content {
-  padding: 0 16px 24px;
-  border-radius: 0 0 8px 8px;
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+  padding: 16px 16px 24px;
   background: $background;
 }
 
 .header {
   display: flex;
   padding: 24px 16px;
-  border-radius: 8px 8px 0 0;
   background: $header;
 
   div {
@@ -84,6 +85,7 @@
 
   input {
     flex: 1;
+    width: 0; // ???
     padding: 0 0 0 18px;
     border-radius: 8px 0 0 8px;
     outline: none;
@@ -92,19 +94,7 @@
   }
 }
 
-.container {
-  display: flex;
-  flex-flow: column;
-  width: 640px;
-  margin: auto;
-}
-
-.home {
-  display: flex;
-  height: 100vh;
-}
-
-.home-message {
+.x {
   div {
     display: flex;
     position: absolute;
@@ -123,5 +113,32 @@
     outline: none;
     font: 400 16px/20px $font-whitney;
     background: $input;
+  }
+}
+
+.container {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+}
+
+@media (min-width: 840px + 1px) {
+  .content {
+    border-radius: 0 0 8px 8px;
+  }
+
+  .header {
+    border-radius: 8px 8px 0 0;
+  }
+
+  .container {
+    width: 640px;
+    height: 480px;
+    margin: auto;
+  }
+
+  .home {
+    display: flex;
+    height: 100vh;
   }
 }
