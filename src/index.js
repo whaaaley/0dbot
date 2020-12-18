@@ -28,7 +28,7 @@ const render = data => {
     body([
       div({ id: 'app' }),
       Sources(data),
-      script({ async: true, src: '/gtag.min.js' })
+      script({ async: true, src: '/gtag.uglify.esbuild.js' })
     ])
   ])
 }
