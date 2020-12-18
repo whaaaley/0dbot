@@ -37,6 +37,7 @@ const add = ({ discord }) => data => {
 
 const merge = ({ discord }) => data => {
   const queue = discord.queue
+  discord.timer -= 60 // one less message = one less minute
 
   for (let i = data; i < queue.length; i++) {
     queue[i - 1] = i === data
@@ -53,6 +54,7 @@ const merge = ({ discord }) => data => {
 
 const remove = ({ discord }) => data => {
   const queue = discord.queue
+  discord.timer -= 60 // one less message = one less minute
 
   for (let i = data; i < queue.length; i++) {
     queue[i] = queue[i + 1]
@@ -141,7 +143,8 @@ export default {
     saveChannelID: false,
     saveToken: false,
     timer: 0,
-    token: ''
+    token: '',
+    channelID: ''
   },
   actions: {
     add,
