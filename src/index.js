@@ -22,9 +22,10 @@ const render = data => {
     title(text(data.title)),
     meta({ name: 'author', content: data.author }),
     meta({ name: 'description', content: data.description }),
+    meta({ name: 'theme-color', content: '#202225' }),
     meta({ id: 'viewport', name: 'viewport', content: 'width=device-width, maximum-scale=1, user-scalable=0' }),
     link({ rel: 'icon', type: 'image/png', href: '/favicon.png' }),
-    // script({ async: true, src: 'https://www.googletagmanager.com/gtag/js' })
+    script({ async: true, src: 'https://www.googletagmanager.com/gtag/js' }),
     body([
       div({ id: 'app' }),
       Sources(data)
