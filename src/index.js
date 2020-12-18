@@ -33,8 +33,8 @@ const render = data => {
 }
 
 const output = render({
-  title: '0dbot',
-  author: 'whaley',
+  title: 'Discord Message Queue',
+  author: 'Dustin Dowell',
   description: ''
 })
 

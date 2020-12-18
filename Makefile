@@ -27,7 +27,7 @@ prepare:
 	@echo ""
 
 css:
-	node-sass src/main.scss --quiet --source-map-contents --source-map true --output public
+	node-sass src/main.scss --quiet --source-map-contents --include-path node_modules --source-map true --output public
 
 js:
 	tsc src/app.js --allowJs --lib DOM,ES2015 --target ES5 --outDir tmp
@@ -39,5 +39,5 @@ html:
 production:
 	tsc src/app.js --allowJs --lib DOM,ES2015 --target ES5 --outDir tmp
 	esbuild tmp/app.js --bundle --minify --define:STATIC=false --define:NODE_ENV=$(NODE_ENV) > public/app.min.js
-	node-sass src/main.scss --quiet --output tmp
+	node-sass src/main.scss --quiet --include-path node_modules --output tmp
 	cleancss -O2 tmp/main.css --output public/main.min.css
