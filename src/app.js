@@ -67,3 +67,14 @@ window.setInterval(() => { dispatch(discord.actions.timer) }, 1000)
 
 // Self explanatory
 dispatch(discord.actions.restoreLocalStorage)
+
+//
+//
+//
+
+// Google Tag Manager
+window.dataLayer = window.dataLayer || []
+window.dataLayer.push({
+  'gtm.start': new Date().getTime(),
+  'event': 'gtm.js'
+})
