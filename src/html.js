@@ -35,8 +35,6 @@ const privateText = a => {
 
 export { h, privateText as text }
 
-// =============================================================================
-
 const a = h('a')
 const abbr = h('abbr')
 const address = h('address')
