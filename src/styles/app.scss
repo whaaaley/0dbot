@@ -1,76 +1,102 @@
 
-.app-warn {
-  margin: 0 0 16px;
-  padding: 12px 18px;
-  border: solid 2px yellow;
-  border-radius: 8px;
-  color: yellow;
-  background: rgba(yellow, 0.5);
-}
-
-//
-
-$yellow: rgb(255, 191, 0);
-$green: rgb(0, 223, 0);
-
-.home-list {
-  flex: 1;
+.message-control {
   display: flex;
-  flex-flow: column;
-  margin: 16px 0;
-  overflow: auto;
-  scroll-behavior: smooth;
+  margin: 0 0 0 auto;
 
   div {
-    padding: 12px 18px 12px 48px;
-    background: url(ic-access-time-24px($light)) left 12px top 8px no-repeat;
+    width: 32px;
+    height: 32px;
+    margin: -8px 0 -8px auto;
+    border-radius: 4px;
+    background-color: $input;
 
-    // &.-pending {
-    //   padding: 12px 18px 12px 96px;
-    //   background: url(ic-access-time-24px($light)) left 12px top 8px no-repeat;
-    // }
+    &.-merge {
+      background: url(ic-merge-type-24px($light)) left 4px top 4px no-repeat;
 
-    // &.-success {
-    //   background: url(ic-check-24px($green)) left 12px top 8px no-repeat;
-    // }
+      &:hover {
+        background: url(ic-merge-type-24px($blue)) left 4px top 4px no-repeat;
+      }
+    }
 
-    &.-em {
-      margin: auto;
-      font-style: italic;
+    &.-remove {
+      background: url(ic-delete-24px($light)) left 4px top 4px no-repeat;
+
+      &:hover {
+        background: url(ic-delete-24px($pink)) left 4px top 4px no-repeat;
+      }
     }
   }
 }
 
-.home-inputs {
+.message {
   display: flex;
+  padding: 12px 18px 12px 48px;
+  background: url(ic-access-time-24px($light)) left 12px top 8px no-repeat;
 
-  input {
-    flex: 1;
+  &:hover {
+    background-color: $hover;
+  }
+}
+
+.placeholder {
+  margin: auto;
+  padding: 12px 18px 12px 48px;
+  font-style: italic;
+  background: url(ic-access-time-24px($light)) left 12px top 8px no-repeat;
+}
+
+.list {
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  height: 296px; // reasons
+  margin: 16px 0;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+
+.content {
+  padding: 0 16px 24px;
+  border-radius: 0 0 8px 8px;
+  background: $background;
+}
+
+.header {
+  display: flex;
+  padding: 24px 16px;
+  border-radius: 8px 8px 0 0;
+  background: $header;
+
+  div {
+    width: 44px;
+    height: 36px;
+    border-radius: 0 8px 8px 0;
+    background: $input url(ic-save-24px($light)) left 10px top 6px no-repeat;
 
     + input {
       margin: 0 0 0 16px;
     }
+
+    &.-on {
+      background-color: $blue;
+    }
+  }
+
+  input {
+    flex: 1;
+    padding: 0 0 0 18px;
+    border-radius: 8px 0 0 8px;
+    outline: none;
+    font: 400 16px/20px $font-whitney;
+    background: $dark;
   }
 }
 
-.home-box {
+.container {
   display: flex;
   flex-flow: column;
-
   width: 640px;
-  height: 480px;
   margin: auto;
-  padding: 24px 16px;
-  border-radius: 8px;
-  background: $background;
-
-  input {
-    padding: 12px 18px;
-    border-radius: 8px;
-    outline: none;
-    font: 400 16px/20px $font-whitney;
-    background: $input;
-  }
 }
 
 .home {
@@ -93,5 +119,9 @@ $green: rgb(0, 223, 0);
   input {
     width: 100%;
     padding: 12px 18px 12px 96px + 12px;
+    border-radius: 8px;
+    outline: none;
+    font: 400 16px/20px $font-whitney;
+    background: $input;
   }
 }

@@ -2,43 +2,60 @@
 import { div, input, text } from '../html'
 import discord from '../stores/discord'
 
-const format = time => {
-  return new Date(time * 1000).toISOString().slice(14, 19)
+let state
+let dispatch
+
+//
+
+const format = time => new Date(time * 1000).toISOString().slice(14, 19)
+
+//
+
+const message = (index, data) => {
+  return div({ class: 'message' }, [
+    div(text(data)),
+    div({ class: 'message-control' }, [
+      div({
+        class: '-merge',
+        onclick: () => {
+          dispatch(discord.actions.merge, index)
+        }
+      }),
+      div({
+        class: '-remove',
+        onclick: () => {
+          dispatch(discord.actions.remove, index)
+        }
+      })
+    ])
+  ])
 }
+
+//
 
 const List = queue => {
   const target = []
 
   if (queue.length === 0) {
-    const item = div({ class: '-em' }, text('Awaiting messages...'))
-    target[0] = item
-
-    return target
+    target[0] = div({ class: 'placeholder' }, text('Awaiting messages...'))
+  } else {
+    for (let i = 0; i < queue.length; i++) {
+      target[i] = message(i, queue[i])
+    }
   }
 
-  for (let i = 0; i < queue.length; i++) {
-    const message = queue[i]
-
-    const item = div({ class: '-pending' }, [
-      text(message.data)
-    ])
-
-    target[i] = item
-  }
-
-  return target
+  return div({ id: 'list', class: 'list' }, target)
 }
 
-const Timer = time => {
-  return div([
-    text(format(time))
-  ])
-}
+//
 
-const Home = (state, dispatch) => {
+const Home = (localState, localDispatch) => {
+  state = localState
+  dispatch = localDispatch
+
   return div({ class: 'home' }, [
-    div({ class: 'home-box' }, [
-      div({ class: 'home-inputs' }, [
+    div({ class: 'container' }, [
+      div({ class: 'header' }, [
         input({
           type: 'password',
           autocomplete: 'off',
@@ -47,38 +64,54 @@ const Home = (state, dispatch) => {
             dispatch(discord.actions.updateToken, e.target.value)
           }
         }),
+        div({
+          class: state.discord.saveToken === true && '-on',
+          onclick: () => {
+            dispatch(discord.actions.saveToken)
+          }
+        }),
         input({
           placeholder: 'Channel ID',
           onchange: e => {
             dispatch(discord.actions.updateChannelID, e.target.value)
           }
+        }),
+        div({
+          class: state.discord.saveChannelID === true && '-on',
+          onclick: () => {
+            dispatch(discord.actions.saveChannelID)
+          }
         })
       ]),
-      div({ id: 'list', class: 'home-list' }, List(state.discord.queue)),
-      div({ class: 'home-message' }, [
-        input({
-          type: 'text',
-          placeholder: 'Message #general',
-          class: '-message',
-          onkeypress: e => {
-            if (e.key === 'Enter') {
-              dispatch(discord.actions.enqueue, e)
+      div({ class: 'content' }, [
+        List(state.discord.queue),
+        div({ class: 'home-message' }, [
+          input({
+            type: 'text',
+            placeholder: 'Message #general',
+            class: '-message',
+            onkeypress: e => {
+              if (e.key === 'Enter') {
+                dispatch(discord.actions.add, e)
 
-              // reset input
-              e.target.value = ''
+                // reset input
+                e.target.value = ''
 
-              // scroll to bottom
-              // dumb hack because lifecycle events are dead
-              const el = document.getElementById('list')
-              el.scrollTop = el.scrollHeight
+                // scroll to bottom
+                // dumb hack because lifecycle events are dead
+                const el = document.getElementById('list')
+                el.scrollTop = el.scrollHeight
+              }
             }
-          }
-        }),
-        Timer(state.discord.timer)
+          }),
+          div(text(format(state.discord.timer)))
+        ])
       ])
     ])
   ])
 }
+
+//
 
 export default {
   view: Home,
