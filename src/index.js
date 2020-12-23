@@ -14,7 +14,7 @@ const Reference = () => [
   script({ defer: true, src: '/app.js' })
 ]
 
-const Sources = NODE_ENV ? Inline : Reference
+const Sources = DEV ? Reference : Inline
 
 const render = data => {
   return html({ lang: 'en' }, [
