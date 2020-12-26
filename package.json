@@ -1,7 +1,15 @@
 {
   "name": "discord-message-queue",
   "version": "1.0.0",
-  "description": "",
+  "description": "Queue Discord messages. Send one per minute.",
+  "homepage": "https://github.com/whaaaley/discord-message-queue#readme",
+  "bugs": {
+    "url": "https://github.com/whaaaley/discord-message-queue/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whaaaley/discord-message-queue.git"
+  },
   "license": "ISC",
   "author": "Dustin Dowell",
   "main": "index.js",
