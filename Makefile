@@ -38,7 +38,7 @@ html:
 	esbuild src/index.js --bundle --define:DEV=$(DEV) --define:STATIC=true --platform=node | node > public/index.html
 
 build:
-	esbuild src/app.js --bundle --define:DEV=false --define:STATIC=false > tmp/app.bundle.js
+	esbuild src/app.js --bundle --minify --define:DEV=false --define:STATIC=false > tmp/app.bundle.js
 	tsc tmp/app.bundle.js --allowJs --lib DOM,ES2015 --target ES5 --outFile tmp/app.bundle.es5.js
 	uglifyjs tmp/app.bundle.es5.js --toplevel -m -c drop_console=true,passes=3 > public/app.min.js
 	node-sass src/main.scss --quiet --include-path node_modules --output tmp
