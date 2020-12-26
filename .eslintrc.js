@@ -10,7 +10,7 @@ module.exports = {
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
-    NODE_ENV: 'readonly',
+    DEV: 'readonly',
     STATIC: 'readonly'
   },
   parserOptions: {

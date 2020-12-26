@@ -4,7 +4,7 @@
 // esbuild outputs empty app.js files when there's a build error
 // so the client won't auto reconnect
 
-if (NODE_ENV === false) {
+if (DEV === true) {
   const source = new EventSource('/reload')
 
   source.onmessage = body => {
