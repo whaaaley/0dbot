@@ -27,7 +27,7 @@ const render = data => {
     link({ rel: 'icon', type: 'image/png', href: '/favicon.png' }),
     body([
       div({ id: 'app' }),
-      Sources(data),
+      Sources(),
       script({ async: true, src: 'https://www.googletagmanager.com/gtm.js?id=GTM-KW3BBQZ' })
     ])
   ])
