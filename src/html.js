@@ -2,11 +2,9 @@
 // NOTE: Tags in this file are pulled from the WHATWG HTML Living Standard.
 // https://html.spec.whatwg.org/multipage/indices.html#elements-3
 
-// NOTE: /* @__PURE__ */ comments let Uglify-JS to remove these variables when
-// they're not used. I'm looking for a more elegant solution.
-
-// NOTE: The following command does not fix the problem.
-// uglifyjs input.js -m -c pure_funcs=['h'] --toplevel > output.js
+// NOTE: /* @__PURE__ */ annotations inform tools like ESBuild, Rollup, and
+// Uglify that these function calls do not produce side effects and can safely
+// be removed when unused.
 
 import { h } from './h'
 export { h, text } from './h'
