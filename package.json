@@ -2,6 +2,7 @@
   "name": "discord-message-queue",
   "version": "1.0.0",
   "description": "",
+  "license": "ISC",
   "author": "Dustin Dowell",
   "main": "index.js",
   "scripts": {
