@@ -56,7 +56,9 @@ const Home = (localState, localDispatch) => {
   return div({ class: 'home' }, [
     div({ class: 'container' }, [
       div({ class: 'header' }, [
+        // label({ for: 'password' }, text('Discord Token')),
         input({
+          // id: 'password',
           type: 'password',
           autocomplete: 'off',
           placeholder: 'Discord Token',
@@ -71,7 +73,9 @@ const Home = (localState, localDispatch) => {
             dispatch(discord.actions.saveToken)
           }
         }),
+        // label({ for: 'channel-id' }, text('Channel ID')),
         input({
+          // id: 'channel-id',
           placeholder: 'Channel ID',
           value: state.discord.channelID,
           onchange: e => {
@@ -88,7 +92,9 @@ const Home = (localState, localDispatch) => {
       div({ class: 'content' }, [
         List(state.discord.queue),
         div({ class: 'x' }, [
+          // label({ for: 'message-box' }, text('Message #general')),
           input({
+            // id: 'message-box',
             type: 'text',
             placeholder: 'Message #general',
             onkeypress: e => {
