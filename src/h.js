@@ -17,22 +17,22 @@ const isArray = Array.isArray
 //   After  h('div', [ <children> ])
 
 const virtualNode = (type, props, ch) => ({
+  _vnode: true, // 2
   type,
   props,
   children: isArray(ch) ? ch : ch == null ? EMPTY_ARR : [ch], // 1
   dom: null,
-  key: props.key,
-  _node: true // 2
+  key: props.key
 })
 
 const virtualTextNode = (value, dom) => ({
+  _vnode: true, // 2
   type: value,
   props: EMPTY_OBJ,
   children: EMPTY_ARR,
   dom,
   key: null,
-  tag: 3,
-  _node: true // 2
+  tag: 3
 })
 
 // NOTE: renderNode returns an HTML string while virtualNode returns virtual
@@ -44,15 +44,12 @@ const text = STATIC ? renderTextNode : virtualTextNode
 // Syntax variations
 // h('div')
 // h('div', { <props> })
-// h('div', { <props> }, [ <children> ])
-// h('div', [ <children> ])
+// h('div', { <props> }, [ <node> ])
+// h('div', [ <node> ])
+// h('div', <node>)
 
 const h = a => (b, c) => {
-  const cond = STATIC
-    ? typeof b === 'string'
-    : b._node === true
-
-  return b == null || isArray(b) || cond
+  return b == null || isArray(b) || (STATIC ? typeof b === 'string' : b._vnode)
     ? node(a, EMPTY_OBJ, b)
     : node(a, b, c)
 }
