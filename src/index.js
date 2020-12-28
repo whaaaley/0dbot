@@ -1,6 +1,6 @@
 
 import fs from 'fs'
-import { body, html, link, meta, script, style, title, div, text } from './html'
+import { body, html, link, meta, noscript, script, style, title, div, text } from './html'
 
 const readFile = file => fs.readFileSync(file, 'utf-8')
 
@@ -23,10 +23,12 @@ const render = data => {
     meta({ name: 'author', content: data.author }),
     meta({ name: 'description', content: data.description }),
     meta({ name: 'theme-color', content: '#202225' }),
-    meta({ id: 'viewport', name: 'viewport', content: 'width=device-width, maximum-scale=1, user-scalable=0' }),
+    meta({ id: 'viewport', name: 'viewport', content: 'width=device-width' }),
     link({ rel: 'icon', type: 'image/png', href: '/favicon.png' }),
+    link({ rel: 'manifest', href: '/manifest.webmanifest' }),
     body([
       div({ id: 'app' }),
+      noscript('Please enable JavaScript and try again.'),
       Sources(),
       script({ async: true, src: 'https://www.googletagmanager.com/gtm.js?id=GTM-KW3BBQZ' })
     ])
@@ -36,7 +38,7 @@ const render = data => {
 const output = render({
   title: 'Discord Message Queue',
   author: 'Dustin Dowell',
-  description: ''
+  description: 'Queue Discord messages. Send one per minute.'
 })
 
 process.stdout.write('<!DOCTYPE html>' + output)
