@@ -1,6 +1,8 @@
 
 import escape from './lib/escapeHtml'
 
+const isArray = Array.isArray
+
 const VOID = ['img', 'input', 'meta', 'br', 'wbr', 'embed', 'area', 'base', 'col',
   'link', 'param', 'source', 'track', 'circle', 'ellipse', 'line', 'mesh',
   'path', 'polygon', 'polyline', 'rect']
@@ -8,16 +10,15 @@ const VOID = ['img', 'input', 'meta', 'br', 'wbr', 'embed', 'area', 'base', 'col
 const join = children => {
   let target = ''
 
-  // WARNING: When used directly this includes unescaped text in the document
+  // WARNING: When used directly this includes unescaped text in the document.
   if (typeof children === 'string') {
     return children
   }
 
-  if (Array.isArray(children) === true) {
+  if (isArray(children)) {
     for (let i = 0; i < children.length; i++) {
       const child = children[i]
-
-      target += Array.isArray(child) === true ? child.join('') : child
+      target += isArray(child) ? child.join('') : child
     }
   }
 
@@ -37,8 +38,7 @@ const renderNode = (tag, data, children) => {
 
   const target = '<' + tag + attrs
 
-  // if (VOID.includes(tag) === true) {
-  if (VOID.includes(tag) === true && !children) {
+  if (VOID.includes(tag)) {
     return target + '/>'
   }
 
