@@ -1,6 +1,6 @@
 
 import fs from 'fs'
-import { body, html, link, meta, noscript, script, style, title, div, text } from './html'
+import { body, html, link, meta, noscript, script, style, title, div } from './html'
 
 const readFile = file => fs.readFileSync(file, 'utf-8')
 
@@ -14,12 +14,10 @@ const Reference = () => [
   script({ defer: true, src: '/app.js' })
 ]
 
-const Sources = DEV ? Reference : Inline
-
 const render = data => {
   return html({ lang: 'en' }, [
     meta({ charset: 'utf-8' }),
-    title(text(data.title)),
+    title(data.title),
     meta({ name: 'author', content: data.author }),
     meta({ name: 'description', content: data.description }),
     meta({ name: 'theme-color', content: '#202225' }),
@@ -29,8 +27,8 @@ const render = data => {
     body([
       div({ id: 'app' }),
       noscript('Please enable JavaScript and try again.'),
-      Sources(),
-      script({ async: true, src: 'https://www.googletagmanager.com/gtm.js?id=GTM-KW3BBQZ' })
+      (DEV ? Reference : Inline)(),
+      script({ defer: true, src: 'https://www.googletagmanager.com/gtm.js?id=GTM-KW3BBQZ' })
     ])
   ])
 }
