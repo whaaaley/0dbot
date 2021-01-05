@@ -30,7 +30,7 @@ css:
 	node-sass src/main.scss --quiet --source-map-contents --include-path node_modules --source-map true --output public
 
 js:
-	esbuild src/app.js --bundle --sourcemap=external --define:DEVELOPMENT=true --define:STATIC=false --outfile=public/app.bundle.js
+	esbuild src/app.ts --bundle --sourcemap=external --define:DEVELOPMENT=true --define:STATIC=false --outfile=public/app.bundle.js
 	tsc public/app.bundle.js --allowJs --sourceMap --lib DOM,ES2015 --target ES5 --outFile public/app.js
 	parcel-source-map --map public/app.bundle.js.map --map public/app.js.map --out public/app.js.map
 
