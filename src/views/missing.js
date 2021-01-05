@@ -1,8 +1,10 @@
 
-import { div } from '../html'
+import { div, text } from '../html'
 
 const Missing = (state, dispatch) => {
-  return div('missing')
+  return div([
+    text('missing')
+  ])
 }
 
 export default {

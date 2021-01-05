@@ -13,7 +13,9 @@ const format = time => new Date(time * 1000).toISOString().slice(14, 19)
 
 const message = (index, data) => {
   return div({ class: 'message' }, [
-    div(text(data)),
+    div([
+      text(data)
+    ]),
     div({ class: 'message-control' }, [
       div({
         class: '-merge',
@@ -37,7 +39,9 @@ const List = queue => {
   const target = []
 
   if (queue.length === 0) {
-    target[0] = div({ class: 'placeholder' }, text('Awaiting messages...'))
+    target[0] = div({ class: 'placeholder' }, [
+      text('Awaiting messages...')
+    ])
   } else {
     for (let i = 0; i < queue.length; i++) {
       target[i] = message(i, queue[i])
@@ -111,7 +115,9 @@ const Home = (localState, localDispatch) => {
               }
             }
           }),
-          div(text(format(state.discord.timer)))
+          div([
+            text(format(state.discord.timer))
+          ])
         ])
       ])
     ])
