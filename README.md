@@ -20,6 +20,23 @@ This project is hosted here https://discord-message-queue.netlify.app/
 + Customizable merge delimiter
 + Customizable timer duration
 
+## View Layer Syntax
+
+Children _must_ be contained inside an array. This was was traded for optional
+prop objects which are more common.
+
+```js
+// Valid syntax
+div()
+div([/* nodes */])
+div({ /* props */ })
+div({ /* props */ }, [/* nodes */])
+
+// Deprecated syntax
+div(/* node */)
+div({ /* props */ }, /* node */)
+```
+
 ## Preview
 
 ![screenshot](screenshot.png)
