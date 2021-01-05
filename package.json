@@ -21,6 +21,7 @@
     "superfine": "^8.0.10"
   },
   "devDependencies": {
+    "@types/node": "^14.14.20",
     "@whaaaley/parcel-source-map-cli": "^0.5.0",
     "clean-css-cli": "^4.3.0",
     "esbuild": "^0.8.26",
