@@ -5,11 +5,9 @@ import discord from '../stores/discord'
 let state
 let dispatch
 
-//
-
-const format = time => new Date(time * 1000).toISOString().slice(14, 19)
-
-//
+const format = (time: number) => {
+  return new Date(time * 1000).toISOString().slice(14, 19)
+}
 
 const message = (index, data) => {
   return div({ class: 'message' }, [

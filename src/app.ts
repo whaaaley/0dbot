@@ -1,6 +1,4 @@
 
-import './automaticReload'
-
 import { patch } from 'superfine'
 import { dispatch, getState } from './pocket'
 
@@ -20,15 +18,6 @@ const getRouteObject = state => {
   const route = pages[state.router.to]
   return route && route.init ? route : pages['/missing']
 }
-
-// Initialize stores
-// dispatch(foobar.actions.init)
-
-// const dragHandler = event => event.preventDefault()
-
-// Listen for drop events
-// document.body.addEventListener('drop', dragHandler)
-// document.body.addEventListener('dragover', dragHandler)
 
 const routeHandler = () => {
   dispatch(router.actions.routerInit)
@@ -63,16 +52,26 @@ window.addEventListener('render', () => {
 //
 
 // Interval
-window.setInterval(() => { dispatch(discord.actions.timer) }, 1000)
+window.setInterval(() => {
+  dispatch(discord.actions.timer)
+}, 1000)
 
 // Self explanatory
 dispatch(discord.actions.restoreLocalStorage)
 
 //
-//
+// Google Tag Manager
 //
 
-// Google Tag Manager
+interface dataLayerEvent {
+  'gtm.start': number,
+  'event': string
+}
+
+declare global {
+  interface Window { dataLayer: dataLayerEvent[] }
+}
+
 window.dataLayer = window.dataLayer || []
 window.dataLayer.push({
   'gtm.start': new Date().getTime(),

@@ -6,6 +6,10 @@
 import { readFileSync } from 'fs'
 import { body, html, link, meta, noscript, script, style, title, div } from './html'
 
+// TODO: Learn how to declare these globally
+declare var DEV: any
+declare var STATIC: any
+
 const render = data => {
   return html({ lang: 'en' }, [
     meta({ charset: 'utf-8' }),
@@ -20,28 +24,27 @@ const render = data => {
     body([
       noscript('Please enable JavaScript and try again.'),
       div({ id: 'app' }),
-      // div(),
-      // div({ foo: 'bar' }),
-      // div({ foo: 'bar' }, [div()]),
-      // div({ foo: 'bar' }, div()),
-      // div([div()]),
-      // div(div()),
-      data.scripts,
-      script({ defer: true, src: '//googletagmanager.com/gtm.js?id=GTM-KW3BBQZ' })
+      data.scripts
     ])
   ])
 }
 
-const output = render({
+const options = {
   title: 'Discord Message Queue',
   author: 'Dustin Dowell',
   description: 'Queue Discord messages. Send one per minute.',
-  styles: DEVELOPMENT
+  styles: DEV
     ? link({ rel: 'stylesheet', href: '/main.css' })
     : style(readFileSync('./public/main.min.css', 'utf8')),
-  scripts: DEVELOPMENT
-    ? script({ defer: true, src: '/app.js' })
-    : script(readFileSync('./public/app.min.js', 'utf8'))
-})
+  scripts: DEV
+    ? [
+        script({ defer: true, src: '/app.js' }),
+        script({ defer: true, src: '/reload.js' })
+      ]
+    : [
+        script(readFileSync('./public/app.min.js', 'utf8')),
+        script({ defer: true, src: '//googletagmanager.com/gtm.js?id=GTM-KW3BBQZ' })
+      ]
+}
 
-process.stdout.write('<!DOCTYPE html>' + output)
+process.stdout.write('<!DOCTYPE html>' + render(options))
