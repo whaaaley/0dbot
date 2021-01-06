@@ -31,7 +31,7 @@ css:
 
 js:
 	esbuild src/app.ts --bundle --sourcemap=external --define:DEV=true --define:STATIC=false --outfile=public/app.js | tee
-	tsc src/app.ts --noEmit --lib DOM,ES2015 | tee
+	tsc src/app.ts --noEmit --noImplicitAny true --lib DOM | tee
 
 html:
 	esbuild src/index.ts --bundle --define:DEV=$(DEV) --define:STATIC=true --platform=node | node > public/index.html

@@ -32,9 +32,11 @@ const update = data => {
   }
 }
 
+type Action = (state, dispatch) => any
+
 // Decide how to call update
 // Note: Actions must return a plain object or promise
-const dispatch = (action, data?) => {
+const dispatch = (action: Action, data?) => {
   let result = action(state, dispatch)
 
   if (typeof result === 'function') {
