@@ -7,8 +7,8 @@ MAKEFLAGS += --no-print-directory
 PATH := $(PWD)/node_modules/.bin:$(PATH)
 SHELL := /bin/bash
 
-all: DEVELOPMENT=false
-start: DEVELOPMENT=true
+all: DEV=false
+start: DEV=true
 
 all: prepare build html
 	# gzip --best --keep --no-name public/index.html
@@ -18,7 +18,7 @@ clean:
 	rm -f package-lock.json
 
 start: prepare
-	node server --bang "$(MAKE) css js html" --scss "$(MAKE) css" --js "$(MAKE) js" --watch "src"
+	node server --bang "$(MAKE) css js html" --scss "$(MAKE) css" --ts "$(MAKE) js" --watch "src"
 
 prepare:
 	@echo ""
@@ -27,18 +27,17 @@ prepare:
 	@echo ""
 
 css:
-	node-sass src/main.scss --quiet --source-map-contents --include-path node_modules --source-map true --output public
+	sass src/main.scss public/main.css --embed-sources --no-error-css --load-path node_modules | tee
 
 js:
-	esbuild src/app.ts --bundle --sourcemap=external --define:DEVELOPMENT=true --define:STATIC=false --outfile=public/app.bundle.js
-	tsc public/app.bundle.js --allowJs --sourceMap --lib DOM,ES2015 --target ES5 --outFile public/app.js
-	parcel-source-map --map public/app.bundle.js.map --map public/app.js.map --out public/app.js.map
+	esbuild src/app.ts --bundle --sourcemap=external --define:DEV=true --define:STATIC=false --outfile=public/app.js | tee
+	tsc src/app.ts --noEmit --lib DOM,ES2015 | tee
 
 html:
-	esbuild src/index.js --bundle --define:DEVELOPMENT=$(DEVELOPMENT) --define:STATIC=true --platform=node | node > public/index.html
+	esbuild src/index.ts --bundle --define:DEV=$(DEV) --define:STATIC=true --platform=node | node > public/index.html
 
 build:
-	esbuild src/app.js --bundle --minify --define:DEVELOPMENT=false --define:STATIC=false > tmp/app.bundle.js
+	esbuild src/app.js --bundle --minify --define:DEV=false --define:STATIC=false > tmp/app.bundle.js
 	tsc tmp/app.bundle.js --allowJs --lib DOM,ES2015 --target ES5 --outFile tmp/app.bundle.es5.js
 	uglifyjs tmp/app.bundle.es5.js --toplevel -m -c drop_console=true,passes=3 > public/app.min.js
 	node-sass src/main.scss --quiet --include-path node_modules --output tmp
