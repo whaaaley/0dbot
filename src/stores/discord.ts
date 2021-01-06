@@ -129,8 +129,8 @@ const restoreLocalStorage = ({ discord }) => {
   discord.saveChannelID = !discord.saveChannelID
   discord.saveToken = !discord.saveToken
 
-  discord.channelID = localStorage.getItem('channelID', discord.token)
-  discord.token = localStorage.getItem('token', discord.token)
+  discord.channelID = localStorage.getItem('channelID')
+  discord.token = localStorage.getItem('token')
 
   return { discord }
 }
